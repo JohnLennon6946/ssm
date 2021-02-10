@@ -1,12 +1,14 @@
 package com.controller;
 
 import com.domain.Product;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import com.service.IProductservice;
 
@@ -24,11 +26,13 @@ public class Productcontroller {
 
     //查询商品的方法
     @RequestMapping("findAll.do")
-    public ModelAndView findAll() throws Exception {
+    public ModelAndView findAll(@RequestParam(value = "page",required = true,defaultValue = "1")int page,
+                                @RequestParam(value = "size",required = true,defaultValue = "4")int size) throws Exception {
         ModelAndView mv=new ModelAndView();
-        List<Product> all = iProductservice.findAll();
-        mv.addObject("productList",all);
-        mv.setViewName("product-list");
+        List<Product> productList = iProductservice.findAll(page,size);
+        PageInfo pageInfo=new PageInfo(productList);
+        mv.addObject("pageInfo",pageInfo);
+        mv.setViewName("product-page-list");
         return mv;
     }
 

@@ -2,6 +2,7 @@ package com.service.Impl;
 
 import com.dao.IProductdao;
 import com.domain.Product;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,8 +16,9 @@ public class IProductserviceImpl implements IProductservice {
     @Autowired
     private IProductdao iProductdao;
 
-    public List<Product> findAll() throws Exception {
-        return iProductdao.findAll();
+    public List<Product> findAll(int page,int size) throws Exception {
+        PageHelper.startPage(page,size);
+        return iProductdao.findAll(page,size);
     }
 
     @Override

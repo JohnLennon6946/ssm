@@ -19,7 +19,7 @@ public class TestMybatis {
         SqlSessionFactory sqlSessionFactory=new SqlSessionFactoryBuilder().build(in);
         SqlSession sqlSession=sqlSessionFactory.openSession();
         IProductdao iProductdao=sqlSession.getMapper(IProductdao.class);
-        List<Product> all = iProductdao.findAll();
+        List<Product> all = iProductdao.findAll(1,4);
         for (Product product:all){
             System.out.println(product);
         }
