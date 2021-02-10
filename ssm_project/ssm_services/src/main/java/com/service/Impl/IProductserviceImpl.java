@@ -24,6 +24,5 @@ public class IProductserviceImpl implements IProductservice {
     @Override
     public void saveProduct(Product product) throws Exception {
         iProductdao.saveProduct(product);
-
     }
 }

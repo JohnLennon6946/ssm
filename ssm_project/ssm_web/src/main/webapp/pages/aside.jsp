@@ -12,7 +12,7 @@
                 <img src="${pageContext.request.contextPath}/img/user2-160x160.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>张猿猿</p>
+                <p><security:authentication property="principal.username"></security:authentication></p>
                 <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
             </div>
         </div>
@@ -49,20 +49,20 @@
                 <ul class="treeview-menu">
 
                     <li id="admin-login">
-                        <a href="all-admin-login.html">
+                        <a href="/user/findAll.do">
                             <i class="fa fa-circle-o"></i> 用户管理
                         </a>
                     </li>
 
                     <li id="admin-register">
-                        <a href="all-admin-register.html">
+                        <a href="/role/findAll.do">
                             <i class="fa fa-circle-o"></i> 角色管理
                         </a>
                     </li>
 
                     <li id="admin-404">
-                        <a href="all-admin-404.html">
-                            <i class="fa fa-circle-o"></i> 资源管理
+                        <a href="/permission/findAll.do">
+                            <i class="fa fa-circle-o"></i> 资源权限管理
                         </a>
                     </li>
 
